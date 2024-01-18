@@ -70,8 +70,12 @@ async function startApolloServer() {
   try {
     await connect(MONGODB);
     const server = new ApolloServer({ typeDefs, resolvers });
+
+    // Use process.env.PORT to get the port number provided by Render
+    const port = parseInt(process.env.PORT, 10) || 4000; // Fallback to 4000 if the PORT env variable is not set or not a number
+
     const { url } = await startStandaloneServer(server, {
-      listen: { port: 4000 },
+      listen: { port: port },
     });
     console.log(`Server is ready at ${url}`);
   } catch (error) {
