@@ -3,8 +3,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { Query, connect } from "mongoose";
 import Book from "../models/book.js";
 
-const MONGODB =
-  "mongodb+srv://shresthv1:Shresthv209@trips.wax99th.mongodb.net/?retryWrites=true&w=majority";
+const MONGODB = process.env.NODE_ENV_MONGO_URI;
 const typeDefs = `#graphql
   type Book {
       _id: String
